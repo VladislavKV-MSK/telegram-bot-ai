@@ -1,6 +1,6 @@
 # Telegram-бот с интеграцией DeepSeek AI
 
-<img src="https://img.shields.io/badge/Docker-✓-blue?logo=docker" alt="Docker"> <img src="https://img.shields.io/badge/Go-1.21+-00ADD8?logo=go" alt="Go"> <img src="https://img.shields.io/badge/OpenRouter-API-7F5AB6" alt="OpenRouter">
+<img src="https://img.shields.io/badge/Docker-✓-blue?logo=docker" alt="Docker"> <img src="https://img.shields.io/badge/Go-1.24+-00ADD8?logo=go" alt="Go"> <img src="https://img.shields.io/badge/OpenRouter-API-7F5AB6" alt="OpenRouter">
 
 Умный Telegram-бот с искусственным интеллектом на базе DeepSeek v3 через OpenRouter API, поддерживающий контекстные диалоги.
 

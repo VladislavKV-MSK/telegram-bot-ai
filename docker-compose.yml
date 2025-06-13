@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      ADMIN_IDS: ${ADMIN_IDS}
+      MAX_HISTORY_SIZE: ${MAX_HISTORY_SIZE}
+    env_file:
+      - .env  # Альтернативный вариант - загрузить из файла
+    ports:
+      - "8080:8080"       # Порт бота
+      - "2112:2112"
+    depends_on:
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Пароль для Grafana
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana-storage:  # Постоянное хранилище для Grafana

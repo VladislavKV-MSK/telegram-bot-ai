@@ -4,6 +4,8 @@
 
 Умный Telegram-бот с искусственным интеллектом на базе DeepSeek v3 через OpenRouter API, поддерживающий контекстные диалоги для разных участников в одном групповом чате. Базово бот настроен на бесплатный тариф ИИ.
 
+Подключен метрики и мониторинг в боте (Prometheus + Grafana).
+
 ## 🌟 Основные возможности
 
 - **Ответы на основе ИИ** - Использует модель DeepSeek v3 через OpenRouter
@@ -34,12 +36,20 @@ cp .env.example .env
 TELEGRAM_BOT_TOKEN=ваш_токен_бота
 OPENROUTER_API_KEY=ваш_ключ_openrouter
 ADMIN_IDS=123456789,987654321  # ID администраторов через запятую
+MODEL_NAME=ваша_модель_бота # По умолчанию :free можно не вводить
 ```
 ### 3. Запускаем бота
+
+Запуск через docker-compose при налчии файла env с вашими параметрами
 ```bash
-docker build -t orchestrator-bot .
-docker run --env-file .env -it orchestrator-bot
+docker-compose up -d
 ```
+Prometheus: http://localhost:9090
+
+Grafana: http://localhost:3000 (логин: admin, пароль: admin)
+
+Для Grafana есть готовый набор JSON с метриками Telegram Bot Monitoring.json
+
 ## ⚙️ Команды бота
 **/start** - Активация бота (только для админов)
 
